@@ -8,6 +8,6 @@ This project involves exploring the U.S. National Oceanic and Atmoshpheric Admin
 To download the dataset please follow the below link:     
 https://drive.google.com/file/d/1iYvFghAgyUoaZlJIDgn2-RvBDn87UDh_/view?usp=sharing  
 
-To view the whole report please download the [a relative link](weathereffects.html) file.
+To view the whole report please download the [Weather Effects Report](weathereffects.html) file.
 
 
