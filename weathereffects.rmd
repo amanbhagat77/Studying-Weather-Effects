@@ -1,0 +1,147 @@
+---
+title: "Studying Various Effects of Severe Weather Events"
+author: "Aman Bhagat"
+date: "3/26/2020"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(gridExtra)
+```
+
+## Synopsis
+
+In this report we aim to describe the effects of storms and other severe weather events which can cause both public health and economic problems for commumnities and municipaltie. Many severe events can results in fatalities, injuries and property damage, and preventing such outcomes to the extent possible is a key concern.
+
+This project involves exploring the U.S. National Oceanic and Atmoshpheric Administration's (NOAA) storm database. This database tracks characteristics of major storms and weather events in the United States, including when and where they occur, as well as estimates of any fatalities, injuries and property damage.
+
+
+## Loading and Processing the Raw Data
+
+From [Storm Data](https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2) we obtain the the storm data which is an official publication of the National Oceanic and Atmoshpheric Administration. The data recorded in the file is from 1950 to 2011. 
+We first read the data from the raw csv file which is compressed via bz2 algorithm to reduce its size.
+
+```{r dataset,cache=TRUE}
+weather <- read.csv("repdata_data_StormData.csv.bz2")
+```
+
+After reading the data we check first few rows(there are 902297 rows) of the dataset
+
+```{r head}
+dim(weather)
+head(weather[,1:8])
+```
+
+Here we can see that the Begin Dates are not in the correct DATE format to process the data. So we converted the dates into the the correct date format for the better analysis of the data.
+
+```{r DatesProcessing, cache=TRUE}
+weather$BGN_DATE <- as.Date(weather$BGN_DATE, format = "%m/%d/%Y")
+str(weather$BGN_DATE)
+```
+
+## Questions
+
+1. Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?
+
+2. Across the United States, which types of events have the greatest economic consequences?
+
+## Results
+
+> Question 1: Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?
+
+In order to address the first question we first grouped our original data by the Event type and the number of Injuries and Fatalities ocured due to that specific Event. We found that most of the Injuries are under 1000 while there are 14 major Weather Events which caused more than 1000 casualties. But by looking at the total number of Injuries, we found that Tornado has caused more casualties(i.e. over 91000). So we ran some explonatory Analysis to confirm that this is not an outlier and by that we observed that in the early years the events were not well recorded while Tornado was recorded correctly throughout the years and by this conclusion we were not able to conclude that the total number of Injuries caused by Tornado was an outlier.
+
+**Data processing for the required Plot**
+```{r totalInjuries}
+harmful.evtype <- weather %>% group_by(EVTYPE) %>% summarize(Injuries.Total = sum(INJURIES))
+Fatalities <- weather %>% group_by(EVTYPE) %>% summarize(Fatalities.Total = sum(FATALITIES))
+Fatalities <- Fatalities[order(-Fatalities$Fatalities.Total),]
+Fatalities <- Fatalities[1:14,]
+
+df3 <- harmful.evtype %>% filter(Injuries.Total > 1000) #Only the events which caused above 1000 Injuries
+```
+
+**Result**
+
+```{r plot1}
+plot1 <- ggplot(data = df3 , aes(y = Injuries.Total , x = EVTYPE, fill = EVTYPE))+
+    geom_bar(stat = "identity")+
+    guides(fill = FALSE)+
+    ggtitle("Injuries caused by Top 14 Harmful Events")+
+    xlab("Event Type")+
+    ylab("Total number of Injuries")+
+    theme(text = element_text(size=8),axis.text.x=element_text(angle = 30,hjust = 1))+
+    scale_y_continuous(labels = comma)
+
+plot2 <- ggplot(data = Fatalities , aes(y = Fatalities.Total , x = EVTYPE, fill = EVTYPE))+
+    geom_bar(stat = "identity")+
+    guides(fill = FALSE)+
+    ggtitle("Fatalities caused by Top 14 Harmful Events")+
+    xlab("Event Type")+
+    ylab("Total number of Fatalities")+
+    theme(text = element_text(size=8),axis.text.x=element_text(angle = 30, hjust = 1))+
+    scale_y_continuous(labels = comma)
+
+grid.arrange(plot1 , plot2 , nrow = 2)
+
+```
+
+
+*The above plot show that there are 14 major weather events which cause more Injuries and fatalities and TORNADO has caused more Injuries and fatalities till 2011.*
+
+
+> Question 2: Across the United States, which types of events have the greatest economic consequences?
+
+As to address the above question we first process the data to get the required data which can be used for plotting and analysis purpose. Here to calaculate total damage caused by the weather events we combine the property damage and crop damage. There are some rows which doesn't have proper record of the damage, so we only selected the rows which have proper damage reported and then analyzed to get the top events which has caused most damage and have the greatest economic consequences.
+
+**Processing Data**
+```{r dataProcessing, cache = TRUE}
+EconomicEvent <- weather %>% select(EVTYPE,PROPDMG,PROPDMGEXP,CROPDMG,CROPDMGEXP)
+
+#Filtering all the property damage and crop damage
+damage <- EconomicEvent %>% filter(PROPDMGEXP == "K" | PROPDMGEXP == "k" | PROPDMGEXP == "m" | PROPDMGEXP == "M" | PROPDMGEXP == "b" | PROPDMGEXP == "B" )
+
+damage <- damage %>% filter(CROPDMGEXP == "K" | CROPDMGEXP == "k" | CROPDMGEXP == "m" | CROPDMGEXP == "M" | CROPDMGEXP == "b" | CROPDMGEXP == "B" )
+
+#Converting to mumeric value of the expression
+damage$PROPDMGEXP <- gsub("k" , 1000, damage$PROPDMGEXP,ignore.case = TRUE)
+damage$PROPDMGEXP <- gsub("m" , 1e+06, damage$PROPDMGEXP,ignore.case = TRUE)
+damage$PROPDMGEXP <- gsub("b" , 1e+09, damage$PROPDMGEXP, ignore.case = TRUE)
+damage$CROPDMGEXP <- gsub("k" , 1000, damage$CROPDMGEXP, ignore.case = TRUE)
+damage$CROPDMGEXP <- gsub("m" , 1e+06, damage$CROPDMGEXP, ignore.case = TRUE)
+damage$CROPDMGEXP <- gsub("b" , 1e+09, damage$CROPDMGEXP, ignore.case = TRUE)
+damage$CROPDMGEXP <- as.numeric(damage$CROPDMGEXP)
+damage$PROPDMGEXP <- as.numeric(damage$PROPDMGEXP)
+
+#Calculating Damage by Event
+damage$Total.Damage <- (damage$PROPDMG * damage$PROPDMGEXP) + (damage$CROPDMG * damage$CROPDMGEXP)
+
+damage.by.event <- damage %>% group_by(EVTYPE) %>% summarize(Damage.Total = sum(Total.Damage))
+damage.by.event <- damage.by.event[order(-damage.by.event$Damage.Total),]
+damage.by.event <- damage.by.event[1:5,]
+```
+
+**Results**
+
+```{r plot3}
+ggplot(data = damage.by.event , aes(y = Damage.Total , x = EVTYPE, fill = EVTYPE))+
+    geom_bar(stat = "identity")+
+    guides(fill = FALSE)+
+    ggtitle("Greatest Economic Consequences of Top 5 Harmful Events")+
+    xlab("Event Type")+
+    ylab("Total Damages")+
+    theme(text = element_text(size=8),axis.text.x=element_text(angle = 30, hjust = 1))+
+    scale_y_continuous(labels = comma)
+```
+
+*From the above bar graph we can infer that Flood has caused the most economic consequences.*
+
+# Summary
+
+**Hence from the above analysis on the given data, we can conclude that Flood has caused more damage in terms of property and crop damage all together. And from the initial analysis we can infer that tornado has caused more damage in terms of public health and fatalities.**

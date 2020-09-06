@@ -1,0 +1,346 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Studying Various Effects of Severe Weather Events},
+  pdfauthor={Aman Bhagat},
+  pdfborder={0 0 0},
+  breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-2}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\title{Studying Various Effects of Severe Weather Events}
+\author{Aman Bhagat}
+\date{3/26/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{synopsis}{%
+\subsection{Synopsis}\label{synopsis}}
+
+In this report we aim to describe the effects of storms and other severe
+weather events which can cause both public health and economic problems
+for commumnities and municipaltie. Many severe events can results in
+fatalities, injuries and property damage, and preventing such outcomes
+to the extent possible is a key concern.
+
+This project involves exploring the U.S. National Oceanic and
+Atmoshpheric Administration's (NOAA) storm database. This database
+tracks characteristics of major storms and weather events in the United
+States, including when and where they occur, as well as estimates of any
+fatalities, injuries and property damage.
+
+\hypertarget{loading-and-processing-the-raw-data}{%
+\subsection{Loading and Processing the Raw
+Data}\label{loading-and-processing-the-raw-data}}
+
+From
+\href{https://d396qusza40orc.cloudfront.net/repdata\%2Fdata\%2FStormData.csv.bz2}{Storm
+Data} we obtain the the storm data which is an official publication of
+the National Oceanic and Atmoshpheric Administration. The data recorded
+in the file is from 1950 to 2011. We first read the data from the raw
+csv file which is compressed via bz2 algorithm to reduce its size.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weather <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"repdata_data_StormData.csv.bz2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+After reading the data we check first few rows(there are 902297 rows) of
+the dataset
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(weather)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 902297     37
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(weather[,}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   STATE__           BGN_DATE BGN_TIME TIME_ZONE COUNTY COUNTYNAME STATE  EVTYPE
+## 1       1  4/18/1950 0:00:00     0130       CST     97     MOBILE    AL TORNADO
+## 2       1  4/18/1950 0:00:00     0145       CST      3    BALDWIN    AL TORNADO
+## 3       1  2/20/1951 0:00:00     1600       CST     57    FAYETTE    AL TORNADO
+## 4       1   6/8/1951 0:00:00     0900       CST     89    MADISON    AL TORNADO
+## 5       1 11/15/1951 0:00:00     1500       CST     43    CULLMAN    AL TORNADO
+## 6       1 11/15/1951 0:00:00     2000       CST     77 LAUDERDALE    AL TORNADO
+\end{verbatim}
+
+Here we can see that the Begin Dates are not in the correct DATE format
+to process the data. So we converted the dates into the the correct date
+format for the better analysis of the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weather}\OperatorTok{$}\NormalTok{BGN_DATE <-}\StringTok{ }\KeywordTok{as.Date}\NormalTok{(weather}\OperatorTok{$}\NormalTok{BGN_DATE, }\DataTypeTok{format =} \StringTok{"%m/%d/%Y"}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(weather}\OperatorTok{$}\NormalTok{BGN_DATE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Date[1:902297], format: "1950-04-18" "1950-04-18" "1951-02-20" "1951-06-08" "1951-11-15" ...
+\end{verbatim}
+
+\hypertarget{questions}{%
+\subsection{Questions}\label{questions}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Across the United States, which types of events (as indicated in the
+  EVTYPE variable) are most harmful with respect to population health?
+\item
+  Across the United States, which types of events have the greatest
+  economic consequences?
+\end{enumerate}
+
+\hypertarget{results}{%
+\subsection{Results}\label{results}}
+
+\begin{quote}
+Question 1: Across the United States, which types of events (as
+indicated in the EVTYPE variable) are most harmful with respect to
+population health?
+\end{quote}
+
+In order to address the first question we first grouped our original
+data by the Event type and the number of Injuries and Fatalities ocured
+due to that specific Event. We found that most of the Injuries are under
+1000 while there are 14 major Weather Events which caused more than 1000
+casualties. But by looking at the total number of Injuries, we found
+that Tornado has caused more casualties(i.e.~over 91000). So we ran some
+explonatory Analysis to confirm that this is not an outlier and by that
+we observed that in the early years the events were not well recorded
+while Tornado was recorded correctly throughout the years and by this
+conclusion we were not able to conclude that the total number of
+Injuries caused by Tornado was an outlier.
+
+\textbf{Data processing for the required Plot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{harmful.evtype <-}\StringTok{ }\NormalTok{weather }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(EVTYPE) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Injuries.Total =} \KeywordTok{sum}\NormalTok{(INJURIES))}
+\NormalTok{Fatalities <-}\StringTok{ }\NormalTok{weather }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(EVTYPE) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Fatalities.Total =} \KeywordTok{sum}\NormalTok{(FATALITIES))}
+\NormalTok{Fatalities <-}\StringTok{ }\NormalTok{Fatalities[}\KeywordTok{order}\NormalTok{(}\OperatorTok{-}\NormalTok{Fatalities}\OperatorTok{$}\NormalTok{Fatalities.Total),]}
+\NormalTok{Fatalities <-}\StringTok{ }\NormalTok{Fatalities[}\DecValTok{1}\OperatorTok{:}\DecValTok{14}\NormalTok{,]}
+
+\NormalTok{df3 <-}\StringTok{ }\NormalTok{harmful.evtype }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(Injuries.Total }\OperatorTok{>}\StringTok{ }\DecValTok{1000}\NormalTok{) }\CommentTok{#Only the events which caused above 1000 Injuries}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Result}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ df3 , }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ Injuries.Total , }\DataTypeTok{x =}\NormalTok{ EVTYPE, }\DataTypeTok{fill =}\NormalTok{ EVTYPE))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{fill =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Injuries caused by Top 14 Harmful Events"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Event Type"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total number of Injuries"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{text =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{size=}\DecValTok{8}\NormalTok{),}\DataTypeTok{axis.text.x=}\KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{30}\NormalTok{,}\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels =}\NormalTok{ comma)}
+
+\NormalTok{plot2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ Fatalities , }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ Fatalities.Total , }\DataTypeTok{x =}\NormalTok{ EVTYPE, }\DataTypeTok{fill =}\NormalTok{ EVTYPE))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{fill =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Fatalities caused by Top 14 Harmful Events"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Event Type"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total number of Fatalities"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{text =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{size=}\DecValTok{8}\NormalTok{),}\DataTypeTok{axis.text.x=}\KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{30}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels =}\NormalTok{ comma)}
+
+\KeywordTok{grid.arrange}\NormalTok{(plot1 , plot2 , }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{weathereffects_files/figure-latex/plot1-1.pdf}
+
+\emph{The above plot show that there are 14 major weather events which
+cause more Injuries and fatalities and TORNADO has caused more Injuries
+and fatalities till 2011.}
+
+\begin{quote}
+Question 2: Across the United States, which types of events have the
+greatest economic consequences?
+\end{quote}
+
+As to address the above question we first process the data to get the
+required data which can be used for plotting and analysis purpose. Here
+to calaculate total damage caused by the weather events we combine the
+property damage and crop damage. There are some rows which doesn't have
+proper record of the damage, so we only selected the rows which have
+proper damage reported and then analyzed to get the top events which has
+caused most damage and have the greatest economic consequences.
+
+\textbf{Processing Data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{EconomicEvent <-}\StringTok{ }\NormalTok{weather }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(EVTYPE,PROPDMG,PROPDMGEXP,CROPDMG,CROPDMGEXP)}
+
+\CommentTok{#Filtering all the property damage and crop damage}
+\NormalTok{damage <-}\StringTok{ }\NormalTok{EconomicEvent }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(PROPDMGEXP }\OperatorTok{==}\StringTok{ "K"} \OperatorTok{|}\StringTok{ }\NormalTok{PROPDMGEXP }\OperatorTok{==}\StringTok{ "k"} \OperatorTok{|}\StringTok{ }\NormalTok{PROPDMGEXP }\OperatorTok{==}\StringTok{ "m"} \OperatorTok{|}\StringTok{ }\NormalTok{PROPDMGEXP }\OperatorTok{==}\StringTok{ "M"} \OperatorTok{|}\StringTok{ }\NormalTok{PROPDMGEXP }\OperatorTok{==}\StringTok{ "b"} \OperatorTok{|}\StringTok{ }\NormalTok{PROPDMGEXP }\OperatorTok{==}\StringTok{ "B"}\NormalTok{ )}
+
+\NormalTok{damage <-}\StringTok{ }\NormalTok{damage }\OperatorTok{%>%}\StringTok{ }\KeywordTok{filter}\NormalTok{(CROPDMGEXP }\OperatorTok{==}\StringTok{ "K"} \OperatorTok{|}\StringTok{ }\NormalTok{CROPDMGEXP }\OperatorTok{==}\StringTok{ "k"} \OperatorTok{|}\StringTok{ }\NormalTok{CROPDMGEXP }\OperatorTok{==}\StringTok{ "m"} \OperatorTok{|}\StringTok{ }\NormalTok{CROPDMGEXP }\OperatorTok{==}\StringTok{ "M"} \OperatorTok{|}\StringTok{ }\NormalTok{CROPDMGEXP }\OperatorTok{==}\StringTok{ "b"} \OperatorTok{|}\StringTok{ }\NormalTok{CROPDMGEXP }\OperatorTok{==}\StringTok{ "B"}\NormalTok{ )}
+
+\CommentTok{#Converting to mumeric value of the expression}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"k"}\NormalTok{ , }\DecValTok{1000}\NormalTok{, damage}\OperatorTok{$}\NormalTok{PROPDMGEXP,}\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"m"}\NormalTok{ , }\FloatTok{1e+06}\NormalTok{, damage}\OperatorTok{$}\NormalTok{PROPDMGEXP,}\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"b"}\NormalTok{ , }\FloatTok{1e+09}\NormalTok{, damage}\OperatorTok{$}\NormalTok{PROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"k"}\NormalTok{ , }\DecValTok{1000}\NormalTok{, damage}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"m"}\NormalTok{ , }\FloatTok{1e+06}\NormalTok{, damage}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{gsub}\NormalTok{(}\StringTok{"b"}\NormalTok{ , }\FloatTok{1e+09}\NormalTok{, damage}\OperatorTok{$}\NormalTok{CROPDMGEXP, }\DataTypeTok{ignore.case =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{CROPDMGEXP <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(damage}\OperatorTok{$}\NormalTok{CROPDMGEXP)}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{PROPDMGEXP <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(damage}\OperatorTok{$}\NormalTok{PROPDMGEXP)}
+
+\CommentTok{#Calculating Damage by Event}
+\NormalTok{damage}\OperatorTok{$}\NormalTok{Total.Damage <-}\StringTok{ }\NormalTok{(damage}\OperatorTok{$}\NormalTok{PROPDMG }\OperatorTok{*}\StringTok{ }\NormalTok{damage}\OperatorTok{$}\NormalTok{PROPDMGEXP) }\OperatorTok{+}\StringTok{ }\NormalTok{(damage}\OperatorTok{$}\NormalTok{CROPDMG }\OperatorTok{*}\StringTok{ }\NormalTok{damage}\OperatorTok{$}\NormalTok{CROPDMGEXP)}
+
+\NormalTok{damage.by.event <-}\StringTok{ }\NormalTok{damage }\OperatorTok{%>%}\StringTok{ }\KeywordTok{group_by}\NormalTok{(EVTYPE) }\OperatorTok{%>%}\StringTok{ }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Damage.Total =} \KeywordTok{sum}\NormalTok{(Total.Damage))}
+\NormalTok{damage.by.event <-}\StringTok{ }\NormalTok{damage.by.event[}\KeywordTok{order}\NormalTok{(}\OperatorTok{-}\NormalTok{damage.by.event}\OperatorTok{$}\NormalTok{Damage.Total),]}
+\NormalTok{damage.by.event <-}\StringTok{ }\NormalTok{damage.by.event[}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Results}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ damage.by.event , }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ Damage.Total , }\DataTypeTok{x =}\NormalTok{ EVTYPE, }\DataTypeTok{fill =}\NormalTok{ EVTYPE))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{guides}\NormalTok{(}\DataTypeTok{fill =} \OtherTok{FALSE}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Greatest Economic Consequences of Top 5 Harmful Events"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Event Type"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Total Damages"}\NormalTok{)}\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{text =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{size=}\DecValTok{8}\NormalTok{),}\DataTypeTok{axis.text.x=}\KeywordTok{element_text}\NormalTok{(}\DataTypeTok{angle =} \DecValTok{30}\NormalTok{, }\DataTypeTok{hjust =} \DecValTok{1}\NormalTok{))}\OperatorTok{+}
+\StringTok{    }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{labels =}\NormalTok{ comma)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{weathereffects_files/figure-latex/plot3-1.pdf}
+
+\emph{From the above bar graph we can infer that Flood has caused the
+most economic consequences.}
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+\emph{Hence from the above analysis on the given data, we can conclude
+that Flood has caused more damage in terms of property and crop damage
+all together. And from the initial analysis we can infer that tornado
+has caused more damage in terms of public health and fatalities.}
+
+\end{document}
